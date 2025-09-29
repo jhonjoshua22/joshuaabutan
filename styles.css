@@ -1,0 +1,428 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400; /* normal */
+}
+
+h1, h2, h3 {
+  font-weight: 700; /* bold for headings */
+}
+
+p, li, span {
+  font-weight: 300; /* light for text */
+}
+
+
+h2 {
+    font-size: 60px;
+}
+
+.navbar {
+    padding: 0 10vw 5px;
+    height: 10vh;
+    border-bottom: 2px solid black;
+    top: 0;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(24px);
+    position: fixed;
+    width: inherit;
+    border-radius: 0 0 10px 10px;
+    font-size: 3vh;
+    z-index: 100;
+}
+
+.navbar img {
+    height: 3vh;
+    padding: 0 30px;
+}
+
+.rightcon {
+    height: 100vh;
+    width: 84.2vw;
+    margin-left: 15vw;
+}
+.leftcon a:hover {
+    color: cyan;
+}
+.leftcon a.active {
+  color: cyan;
+  font-weight: bold;
+}
+.leftcon {
+    background: black;
+    width: 15vw;
+    height: 100vh;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    color: white;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.leftcon a {
+    position: relative;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    padding-left: 20px;
+    margin: 20px 0;
+    display: block;
+    transition: color 0.3s;
+}
+.leftcon a::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: white;
+  transition: all 0.3s ease;
+}
+.leftcon a.active::before {
+  background: cyan;
+  width: 16px;
+  height: 16px;
+}
+
+.name {
+    height: 50vh;
+    width: 90%;
+    margin: 13vh auto 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+.name .card {
+    width: 80px;
+    margin: 0 3px;
+    font-weight: bold;
+    border-bottom: 3px solid black;
+    background: white;
+
+}
+h4{
+    font-weight: bold;
+}
+@media (max-width: 991px) {
+  /* completely remove left sidebar */
+  .leftcon {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    left: -9999px !important;        /* move off-screen if fixed */
+    transform: translateX(-100%) !important;
+    pointer-events: none !important;
+  }
+
+  /* make center take full width */
+  .rightcon {
+    margin-left: 0 !important;
+    width: 100vw !important;
+    padding-left: 0 !important;
+  }
+
+  /* optional: make outer flex container not keep space */
+  .container-fluid.d-flex {
+    padding-left: 0 !important;
+  }
+}
+
+.aboutme {
+    width: 50%;
+    height: 70vh;
+    padding-top: 6vh;
+    padding-right: 90px;
+}
+
+.aboutme span{
+    border: 2px solid black;
+    border-radius: 15px;
+    margin: 25px 5px;
+    padding: 5px 20px 9px;
+    font-weight: bold;
+    height: 15px;
+}
+
+.aboutme span:hover {
+    background: black;
+    color: white;
+    transition: 0.3s;
+}
+
+.aboutpics {
+    width: 50%;
+    padding-top: 12vh;
+    height: 60vh;
+    position: relative; /* anchor for arrows */
+    overflow: hidden;   /* hide scrollbars here */
+}
+
+.scroll-inner {
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;  /* scroll only this inner part */
+    white-space: nowrap;
+}
+
+.scroll-inner img {
+    height: 100%;
+    display: inline-block;
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 60%;
+    transform: translateY(-50%);
+    z-index: 10;
+    cursor: pointer;
+    height: 70px;
+    background: transparent;
+}
+
+.scroll-btn.left {
+    left: 0;
+}
+
+.scroll-btn.right {
+    right: 0;
+}
+
+.scroll-inner::-webkit-scrollbar {
+    display: none; /* fully hides the scrollbar */
+}
+
+.works {
+    flex-wrap: wrap;
+    height: 100vh;
+    margin-top: 9vh;
+    width: 100%;
+}
+
+.rttech, .smartclinic {
+    flex: 0 0 calc(50% - 1vh);  /* 2 items per row */
+    max-width: auto;
+    display: flex;
+    align-items: center;          /* vertically center text + image */
+    justify-content: flex-start;  /* image on left, text on right */
+    height: 40vh;
+    margin: 0.5vh;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.cgh, .rg, .viewmore {
+    flex: 0 0 calc(33.33% - 1vh); 
+    max-width: 33.33%;
+    display: flex;
+    align-items: center;       
+    justify-content: flex-start;  
+    height: 30vh;
+    margin: 0.5vh;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.cgh .floating-img, .rg .floating-img {
+    height: 90%;
+    width: auto;
+}
+
+.floating-img {
+    width: 50%;
+    height: auto;
+    margin-right: 15px;           /* spacing between image and text */
+    z-index: 10;
+}
+
+.rttech p, .smartclinic p {
+    color: white;
+    font-weight: bold;
+    font-size: 50px;
+    text-align: center;             /* text stays beside image */
+    z-index: 10;
+}
+.cgh p, .rg p, .viewmore p {
+    color: white;
+    font-weight: bold;
+    font-size: 50px;
+    text-align: center;             /* text stays beside image */
+    z-index: 10;
+}
+.rttech::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: 
+        linear-gradient(to left, rgba(0,0,0,0) 50%, rgba(0,0,0,1) 100%), 
+        url("images/rttechbg.png");
+    background-size: cover;
+    background-position: center;
+    animation: movebg 17s linear infinite;
+
+    filter: blur(8px); /* adjust blur strength */
+    transform: scale(1.1); /* prevents edges from showing */
+    z-index: 0; /* stay behind content */
+}
+
+.smartclinic::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: 
+        linear-gradient(to left, rgba(0,0,0,0) 60%, rgba(0,0,0,1) 100%), 
+        url("images/smartclinicbg.png");
+    background-size: cover;
+    background-position: center;
+    animation: movebg 17s linear infinite;
+    filter: blur(8px); /* adjust blur strength */
+    transform: scale(1.1); /* prevents edges from showing */
+    z-index: 0; /* stay behind content */
+}
+
+.cgh::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: 
+        linear-gradient(to left, rgba(0,0,0,0) 50%, rgba(0,0,0,1) 100%), 
+        url("images/rttechbg.png");
+    background-size: cover;
+    background-position: center;
+    animation: movebg 17s linear infinite;
+
+    filter: blur(8px); /* adjust blur strength */
+    transform: scale(1.1); /* prevents edges from showing */
+    z-index: 0; /* stay behind content */
+}
+
+.rg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: 
+        linear-gradient(to left, rgba(0,0,0,0) 50%, rgba(0,0,0,1) 100%), 
+        url("images/smartclinicbg.png");
+    background-size: cover;
+    background-position: center;
+    animation: movebg 17s linear infinite;
+
+    filter: blur(8px); /* adjust blur strength */
+    transform: scale(1.1); /* prevents edges from showing */
+    z-index: 0; /* stay behind content */
+}
+
+@keyframes movebg {
+  0% {
+    background-position: 50% 0% ;       /* top */
+  }
+  50% {
+    background-position: 50% 100% ;  /* bottom (adjust distance) */
+  }
+  100% {
+    background-position: 50%  0% ;       /* back to top */
+  }
+}
+
+.slogo {
+    height: 35px;
+    position: fixed;
+    right: 0.7%;
+}
+
+.services {
+    background: transparent;
+    display: flex;
+    flex-wrap: wrap;       /* allows multiple cards to wrap */
+    justify-content: center; /* horizontal centering */
+    align-items: center;     /* vertical centering */
+    gap: 20px;               /* optional spacing between cards */
+    height: 90vh;   
+}
+
+.services .card {
+    display: grid;                /* use grid for perfect centering */
+    place-items: center;          /* centers both vertically and horizontally */
+    height: 100px;                /* fixed height */
+    width: 150px;                 /* fixed width */
+    text-align: center;
+    font-size: auto;
+
+}
+
+.services .card:hover {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(0.8);
+    font-weight: bold;
+    color: white;
+}
+
+.chasing-border {
+    border: 15px;
+    border-radius: 15px;
+}
+
+.chasing-border:before, chasing-border:after {
+    content: '';
+    position: absolute;
+    left: -2px; top: -2px;
+    background: linear-gradient(to right, #ff0000, #ff7300, #7a0eff, #ff00c8, #ff0000);
+    background-size: 400%;
+    width: calc(100% + 4px);
+    border-radius: 15px;
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: glow 20s linear infinite;
+}
+.block:after {
+    filter: blur (30px);
+    border-radius: 15px;
+}
+
+@keyframes glow {
+    0% {
+    background-position: 0 0;
+    }
+    50% {
+    background-position: 500% 0;
+    }
+    100% {
+    background-position: 0 500%;
+    }
+}
+
+.end {
+    height: 50vh;
+    background: black;
+}
+
+
