@@ -26,13 +26,13 @@
             <div class="navbar align-items-center d-flex">
                 <a href="#home"><img src="images/home.png" title="Home"></a>
                 <img src="images/works.png" title="Works">
-                <img src="images/chat.png" title="Message me">
+                <a href="messageme.html"><img src="images/chat.png" title="Message me"></a>
                 <a href="2025 cv.pdf" download><img src="images/cv.png" title="Download CV"></a>
             </div>
 
-            <section id="home" class="name container-fluid d-flex p-0" >
-                <div class="container-fluid" style="width: 30%; ">
-                    <img src="images/avatar.png" alt="" style="border: 3px solid black; border-radius: 50%; width: 250px;">
+            <section id="home" class="name container-fluid d-flex" >
+                <div class="container-fluid" style="width: 300px; height: 300px">
+                    <img src="images/avatar.png" alt="" style="border: 3px solid black; border-radius: 50%; height: inherit;">
                 </div>
                 <div class="container-fluid" style="width: 60%">
                     <h1 style="font-size: 90px">JOSHUA ABUTAN</h1>
@@ -54,7 +54,7 @@
 
             </section>
 
-            <section id="aboutme" class="scroll-wrapper container-fluid pt-0 d-flex" style="height: auto; width: 90%;">
+            <section id="aboutme" class="scroll-wrapper container-fluid d-flex" style="height: auto; width: 90%;">
                 <div class="aboutme container-fluid bg-white">
                     <h2>About me...</h2>
                     <div id="aboutmep" style="height: 15vh"></div><br>
@@ -66,16 +66,16 @@
                         <span>Figma</span> <span>Canva</span>
                 </div>
                 <div class="aboutpics">
-                    <img class="scroll-btn left" src="images/left.png" alt="left">
                     
                     <div class="scroll-inner">
-                        <img src="images/sample (1).jpg" alt="">
-                        <img src="images/sample (2).jpg" alt="">
                         <img src="images/sample (3).jpg" alt="">
-                        <img src="images/sample (4).jpg" alt="">
+                        <img src="images/sample (2).jpg" alt="">
+                        <img src="images/sample (1).jpg" alt="">
                     </div>
-                    
-                    <img class="scroll-btn right" src="images/right.png" alt="right">
+                    <input class="comments" placeholder="Write something for me" type="text">
+                    <button class="heart-btn">
+                        <img src="images/heart.png" alt="">
+                    </button>
                 </div>
 
             </section>
@@ -85,11 +85,20 @@
                 <div class="flex-wrap container-fluid d-flex p-0 mt-5 mb-5">
                     <div class="rttech">
                         <img src="images/rttechmu.png" alt="" class="floating-img">
+                        <img title="javascript" src="images/js.png" alt="" class="tech-logo" style="top: 10px;">
+                        <img title="bootstrap" src="images/bootstrap.png" alt="" class="tech-logo" style="top: 50px">
+                        <img title="html 5" src="images/html.png" alt="" class="tech-logo" style="top: 90px">
+                        <img title="css" src="images/css.png" alt="" class="tech-logo" style="top: 130px">
                         <p>RT Tech <br> Shop</p>
                     </div>
 
                     <div class="smartclinic">
                         <img src="images/smartclinicmu.png" alt="" class="floating-img">
+                        <img title="javascript" src="images/js.png" alt="" class="tech-logo" style="top: 10px;">
+                        <img title="mySQL" src="images/mysql.png" alt="" class="tech-logo" style="top: 50px">
+                        <img title="html 5" src="images/html.png" alt="" class="tech-logo" style="top: 90px">
+                        <img title="css" src="images/css.png" alt="" class="tech-logo" style="top: 130px">
+                        <img title="php" src="images/php.png" alt="" class="tech-logo" style="top: 170px">
                         <p>Smart<br>Clinic</p>
                     </div>
 
@@ -156,26 +165,41 @@
         <a href="https://www.linkedin.com/in/jhonjoshua" target="_blank"><img class="slogo" src="images/linkedin.png" alt="" style="bottom: 7%"></a>
     </div>
     
-  <script>
-    const wrappers = document.querySelectorAll('.scroll-wrapper');
+    <script>
+    const scrollInner = document.querySelector('.scroll-inner');
+    const images = scrollInner.querySelectorAll('img');
 
-    wrappers.forEach(wrapper => {
-      const container = wrapper.querySelector('.scroll-inner');
-      const leftBtn = wrapper.querySelector('.scroll-btn.left');
-      const rightBtn = wrapper.querySelector('.scroll-btn.right');
+    scrollInner.addEventListener('click', (e) => {
+        const rect = scrollInner.getBoundingClientRect();
+        const clickX = e.clientX - rect.left; // X relative to scroll-inner
+        const half = rect.width / 2;
 
-      leftBtn.addEventListener('click', () => {
-        container.scrollBy({ left: -200, behavior: 'smooth' });
-      });
+        // scroll by width of the first image including margin
+        const imgStyle = getComputedStyle(images[0]);
+        const imgWidth = images[0].offsetWidth + parseInt(imgStyle.marginRight);
 
-      rightBtn.addEventListener('click', () => {
-        container.scrollBy({ left: 200, behavior: 'smooth' });
-      });
+        if (clickX < half) {
+            // left half clicked → scroll left by one image
+            scrollInner.scrollBy({ left: -imgWidth, behavior: 'smooth' });
+        } else {
+            // right half clicked → scroll right by one image
+            scrollInner.scrollBy({ left: imgWidth, behavior: 'smooth' });
+        }
+    });
+    
+    const heartBtn = document.querySelector('.heart-btn');
+    let hearted = false;
+
+    heartBtn.addEventListener('click', () => {
+        hearted = !hearted; // toggle state
+        heartBtn.querySelector('img').src = hearted 
+            ? 'images/hearted.png'  // change to hearted
+            : 'images/heart.png';   // revert back
     });
 
-  </script>
+    </script>
   
-  <script>
+    <script>
     // smooth scroll (optional, so it feels nicer when clicking)
     document.querySelectorAll('.leftcon a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
